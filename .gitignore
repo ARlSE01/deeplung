@@ -1,0 +1,11 @@
+venv/
+data/
+dummy_data/
+dataset/
+archive.zip
+__pycache__/
+*.pyc
+.DS_Store
+.env
+checkpoints_dryrun/
+.ipynb_checkpoints/
