@@ -123,7 +123,7 @@ def load_model(model_path: str, device: torch.device):
 
         ssl._create_default_https_context = ssl._create_unverified_context
 
-        model = get_model(num_classes=len(CLASS_NAMES))
+        model = get_model(num_classes=len(CLASS_NAMES), pretrained=False)
         state = torch.load(model_path, map_location=device)
         model.load_state_dict(state)
         model = model.to(device)
@@ -136,6 +136,9 @@ def load_model(model_path: str, device: torch.device):
 app = Flask(__name__)
 # Allow requests from Vite dev server during development
 CORS(app)
+
+# Optimize PyTorch CPU resources for low-RAM hosts (like Render Free Tier)
+torch.set_num_threads(1)
 
 device = get_device()
 
